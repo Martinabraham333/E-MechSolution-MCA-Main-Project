@@ -1,4 +1,4 @@
-from django import form
+from django import forms
 from .models import *
 from home.models import user_reg
 
