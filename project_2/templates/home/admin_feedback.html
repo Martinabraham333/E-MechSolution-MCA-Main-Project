@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Technican</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<h1 class="text-center">User Feedback</h1>
+
+		<div class="table-responsive mt-5">
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+                        <th>Full Name</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Feedback</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+                    {% for feed  in feed reversed %}
+                   
+                    {% if feed.Cl_reg %}
+					<tr>
+						<td>{{feed.Cl_reg.user.first_name}}</td>
+						<td>{{feed.Cl_reg.user.username}}</td>
+						<td>{{feed.Cl_reg.user.email}}</td>
+						<td>{{feed.Cl_reg.phone}}</td>
+						<td>{{feed.feedback}}</td>
+                        
+                        </td>
+					</tr>
+
+                    {% else %}
+                    <tr>
+						<td>{{feed.tech_reg.user.first_name}}</td>
+						<td>{{feed.tech_reg.user.username}}</td>
+						<td>{{feed.tech_reg.user.email}}</td>
+						<td>{{feed.tech_reg.phone}}</td>
+						<td>{{feed.feedback}}</td>
+                        
+                        </td>
+					</tr>
+                    {% endif %}
+					{% endfor %}
+
+                    
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

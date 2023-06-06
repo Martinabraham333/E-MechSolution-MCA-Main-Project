@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Home Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<h1 class="text-center">Admin Home Page</h1>
+
+		<div class="row mt-5">
+
+			<div class="col-md-6 col-lg-4 mb-3">
+				<a href="{% url 'admin_technicans' %}" class="btn btn-primary btn-block btn-lg p-5">Technicians</a>
+			</div>
+
+			<div class="col-md-6 col-lg-4 mb-3">
+				<a href="{% url 'admin_clients' %}" class="btn btn-primary btn-block btn-lg p-5">Clients</a>
+			</div>
+
+			<div class="col-md-6 col-lg-4 mb-3">
+				<a href="{% url 'admin_approval' %}" class="btn btn-primary btn-block btn-lg p-5">Approval</a>
+			</div>
+             
+			<div class="col-md-6 col-lg-4 mb-3 mx-auto">
+                <a href="{% url 'admin_feedback' %}" class="btn btn-primary btn-block btn-lg p-5">Feedback</a>
+            </div>
+            
+
+		</div>
+
+	</div>
+
+</body>
+</html>

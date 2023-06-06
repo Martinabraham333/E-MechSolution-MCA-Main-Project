@@ -1,0 +1,147 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <style>  
+        .checked {  
+            color : yellow;  
+            font-size : 20px;  
+        }  
+        .unchecked {  
+            font-size : 20px;  
+        }  
+    </style> 
+  </head>
+<body>
+
+{% include 'cl/navbar.html' %}
+
+
+<section class="vh-auto" style="background-color: #9de2ff;">
+    <div class="container py-5 h-50">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-md-9 col-lg-7 col-xl-5">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-4">
+              <div class="d-flex text-black">
+                <div class="flex-shrink-0">
+                  <img src="{{ technician.emprofiles.profile_picture.url}}"
+                    alt="Generic placeholder image" class="img-fluid"
+                    style="width: 180px; border-radius: 10px;">
+                    <h1 style="color:#ffd700 ">{{avg_rating}}/5</h1>
+                    {% if avg_rating  >= 3 and avg_rating  < 4  %}
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                     
+                    <span class = "fa fa-star unchecked"></span> <br>
+                    {% elif avg_rating  >= 4 and avg_rating  < 5 %}
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    
+                    <span class = "fa fa-star unchecked"></span> <br>
+                    {% elif avg_rating == 5 %}
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    
+                    <span class = "fa fa-star checked"></span> <br>
+                    {% elif avg_rating >= 2 and avg_rating  < 3  %}
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    
+                    <span class = "fa fa-star unchecked"></span> <br>
+                    {% elif avg_rating >= 1 and avg_rating  < 2  %}
+                    <span class = "fa fa-star checked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    
+                    <span class = "fa fa-star unchecked"></span> <br>
+                    {% elif avg_rating == 0 %}
+                    <span class = "fa fa-star unchecked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    <span class = "fa fa-star unchecked"></span>  
+                    
+                    <span class = "fa fa-star unchecked"></span> <br>
+                    {% endif %}
+                    {{count_rating}} Clients Rated 
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h5 class="mb-1">{{technician.user.first_name}}</h5>
+                  <p class="mb-2 pb-1" style="color: #2b2a2a;">Username: {{technician.user.username}}</p>
+                  <div 
+                    style="background-color: #efefef;">
+                     <!-- To display checked star rating icons -->  
+         
+            
+                    
+                      <p >Email: {{technician.user.email}}</p>
+                      
+                   
+                    
+                        <p >Address: {{technician.emprofiles.address}}</p>
+                        
+                      
+                     
+                        <p >Phone: {{technician.user.tech_reg.phone}}</p>
+
+                        <p >Service Device:{{technician.emprofiles.domain}}</p>
+                        <p >Service Place:{{technician.emprofiles.service_place}}</p>
+                        <p >Experience:{{technician.emprofiles.experience}}</p>
+                        <p >Service Charge:{{technician.emprofiles.service_charge}}</p>
+                        
+                    
+                    
+                  </div>
+                  <div class="d-flex pt-1">
+                     </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+
+  <div class="card">
+    <div class="card-header">
+    View all Reviews And Rating
+    </div>
+    {% for rate in ratings  %}
+    <div class="card-body">
+      <h1 class="card-title" style="color:#ffd700 ">{{rate.value}}/5</h1> 
+       <h4>{{rate.client}}</h4>
+        <span><p class="card-text">{{rate.review}}</p></span>
+      
+      
+    </div>
+  </div>
+  {% endfor %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

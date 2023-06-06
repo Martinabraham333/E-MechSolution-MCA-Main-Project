@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">E-Mech Solutions</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'cl_index' %}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'cl_edit_profile' %}" >Edit profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'search_em_profile' %}">Search Technicians</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'cl_notification' %}">Notification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'cl_history' %}">History</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'feedback' %}">Feedback</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+        </li>
+        <li class="nav-item" style="position:absolute;left:1300px;">
+          <a class="nav-link text-white" href="#">Hello !  {{request.user}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

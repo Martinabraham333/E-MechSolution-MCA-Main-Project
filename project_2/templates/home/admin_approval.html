@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Technican</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<h1 class="text-center">Technican Approval</h1>
+
+		<div class="table-responsive mt-5">
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+                        <th>Full Name</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>ID Proof</th>
+						<th>ID Number</th>
+                       
+                        <th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+                    {% for tech  in technicians reversed %}
+                    {% if tech.status == "waiting" %}
+                    
+					<tr>
+						<td>{{tech.user.first_name}}</td>
+						<td>{{tech.user.username}}</td>
+						<td>{{tech.user.email}}</td>
+						<td>{{tech.phone}}</td>
+						<td><a href="{{ tech.id_prof.url }}" target="_blank">View ID Proof</a></td>
+
+
+                        <td>{{tech.id_proof_number}}</td>
+                        
+                        <td> <a href="{% url 'technican_approved' tech.id %}" class="btn btn-success">Accepted</a>
+                            <a href="{% url 'technican_remove' tech.id %}" class="btn btn-danger">Rejected</a>
+                           
+                        </td>
+					</tr> 
+                    {% endif %}
+					{% endfor %}
+
+                    
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

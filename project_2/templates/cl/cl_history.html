@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+</head>
+<body>
+  
+    {% include 'cl/navbar.html' %}<br>
+     
+    <div class="container mt-5">
+     
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Request ID</th>
+            <th>Technican Name</th>
+            <th>Status</th>
+            <th>Status Date</th>
+            <th>Service Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        {% for hist in history reversed %}
+        {% if request.user.username == hist.service_mul_request.cl.user.username and hist.service_mul_request.request_status != "Canceled"  %}
+        
+        <tbody>
+          <tr>
+            <td>MUL_{{hist.service_mul_request.id}}</td>
+            <td>{{hist.service_mul_request.em.user.username}}</td>
+            <td>{{hist.service_mul_request.request_status}}</td>
+            <td>{{hist.service_mul_request.created_at}}</td>
+            <td>{{hist.service_mul_request.date}}</td>
+            <td>
+              <div class="btn-group">
+                <a style="margin-right: 10px;" class="btn btn-primary" href="{% url 'mul_request_view' hist.service_mul_request.id %}">View</a>
+                <a  class="btn btn-danger" href="{% url 'mul_request_cancel' hist.service_mul_request.id %}">Cancel</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+    
+    {% elif request.user.username == hist.service_request.cl.user.username and hist.service_request.request_status == "pending"   %}
+
+    <tbody>
+      <tr>
+        <td>PRA_{{hist.service_request.id}}</td>
+        <td>{{hist.service_request.em.user.username}}</td>
+        <td>{{hist.service_request.request_status}}</td>
+        <td>{{hist.service_request.created_at}}</td>
+        <td>{{hist.service_request.date}}</td>
+        <td>
+          <div class="btn-group">
+            <a style="margin-right: 10px;" class="btn btn-primary" href="{% url 'request_view' hist.service_request.id %}">View</a>
+            <a  class="btn btn-danger" href="{% url 'request_cancel' hist.service_request.id %}">Cancel</a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    {% elif request.user.username == hist.service_request.cl.user.username and hist.service_request.request_status == "Accepted"   %}
+
+    <tbody>
+      <tr>
+        <td>PRA_{{hist.service_request.id}}</td>
+        <td>{{hist.service_request.em.user.username}}</td>
+        <td>{{hist.service_request.request_status}}</td>
+        <td>{{hist.service_request.created_at}}</td>
+        <td>{{hist.service_request.date}}</td>
+        <td>
+          <div class="btn-group">
+            <a style="margin-right: 10px;" class="btn btn-primary" href="{% url 'request_view' hist.service_request.id %}">View</a>
+            <a  class="btn btn-danger" href="{% url 'request_cancel' hist.service_request.id %}">Cancel</a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    {% elif request.user.username == hist.service_request.cl.user.username and hist.service_request.request_status == "Rejected"   %}
+
+    <tbody>
+      <tr>
+        <td>PRA_{{hist.service_request.id}}</td>
+        <td>{{hist.service_request.em.user.username}}</td>
+        <td>{{hist.service_request.request_status}}</td>
+        <td>{{hist.service_request.created_at}}</td>
+        <td>{{hist.service_request.date}}</td>
+        <td>
+          <div class="btn-group">
+            <a style="margin-right: 10px;" class="btn btn-primary" href="{% url 'request_view' hist.service_request.id %}">View</a>
+           
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    
+
+    {% elif request.user.username == hist.cancel_request.service_mul_request.cl.user.username %}
+    <tbody>
+      <tr>
+        <td>MUL_{{hist.cancel_request.service_mul_request.id}}</td>
+        <td>{{hist.cancel_request.service_mul_request.em.user.username}}</td>
+        <td>{{hist.cancel_request.service_mul_request.request_status}}</td>
+        <td>{{hist.cancel_request.date}}</td>
+        <td>{{hist.cancel_request.service_mul_request.date}}</td>
+        <td>
+          <div class="btn-group">
+            <a style="margin-right: 10px;" class="btn btn-primary" href="{% url 'mul_request_view' hist.cancel_request.service_mul_request.id %}">View</a>
+           
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  
+    {% elif request.user.username == hist.cancel_request.service_request.cl.user.username %}
+    <tbody>
+      <tr>
+        <td>PRA_{{hist.cancel_request.service_request.id}}</td>
+        <td>{{hist.cancel_request.service_request.em.user.username}}</td>
+        <td>{{hist.cancel_request.service_request.request_status}}</td>
+        <td>{{hist.cancel_request.date}}</td>
+        <td>{{hist.cancel_request.service_request.date}}</td>
+        <td>
+          <div class="btn-group">
+            <a style="margin-right: 10px;" class="btn btn-primary" href="{% url 'request_view' hist.cancel_request.service_request.id %}">View</a>
+           
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+    
+
+
+
+
+    {% endif %}
+ 
+ 
+{% endfor %}
+
+
+
+
+</table>
+</div>
+
+
+ 
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
